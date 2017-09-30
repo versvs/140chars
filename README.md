@@ -7,8 +7,7 @@ This extension is more of a toy than a real project, but maybe there is room of 
 
 Version
 =======
-0.1-SNAPSHOT
-
+1.0
 
 License
 =======
