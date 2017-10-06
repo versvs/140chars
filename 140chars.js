@@ -5,17 +5,32 @@ function install140chars () {
   console.log("140chars has been installed!");
 }
 
+/**
+ *  @Accepts: the whole html document
+ *  @Returns: Void function, but it removes the long tweets from the DOM
+ */
 function hideLongTweets() {
     var i = 0;
     var tweets = document.getElementsByClassName("tweet-text");
     for ( i; i < tweets.length; i++ ) {
-      if ( tweets[i].innerText.length > 140 ) {
+      // text is the plain text inside the object in the just-selected array of web elements
+      var text = stripHTML(tweets[i]);
+      if ( text.length > 140 ) {
         tweets[i].closest(".stream-item").remove();
         totalHiddenLongTweets++;
         browser.runtime.sendMessage({"totalHiddenLongTweets": totalHiddenLongTweets});
-        console.log("a tweet too long for us has been silenced");
+        console.log("a tweet too long for us has been silenced, cheers!");
       }
     }
+}
+
+/**
+ *  @Accepts: a web element
+ *  @Returns: a string with the stripped-down text content of the selected element
+ *
+ */
+function stripHTML(webElement) {
+  return webElement.innerText; // plain text, xss safe
 }
 
 // initialize the extension on install
@@ -38,10 +53,10 @@ if (document.readyState == "complete") {
 // first initial clearing, without waiting for Mutations
 hideLongTweets();
 
-// on to the MutationObserver
+// now, we open the paved way to the MutationObserver
 var observer = new MutationObserver(function(mutations) {
     hideLongTweets();
-    console.log(mutations);
+    console.debug(mutations);
 });
 
 var observerConfig = {

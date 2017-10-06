@@ -7,7 +7,7 @@ This extension is more of a toy than a real project, but maybe there is room of 
 
 Version
 =======
-1.0
+1.1
 
 License
 =======
@@ -23,6 +23,14 @@ About the author
 Jose Alcántara (@versvs at Twitter). But I also have a blog (http://www.versvs.net) with posts that couldnt be cut down to 140 chars (or less).
 
 
-To Do
-=====
-Use MutationObservers to check the load of new tweets instead of this every-few-seconds trick we do now.
+Changelog
+=========
+
+Version 1.1
+-----------
+* Fixed how the length of a tweet was being measured
+
+Version 1.0
+-----------
+* First version of the extension
+* MutationObserver used to listen to DOM changes
